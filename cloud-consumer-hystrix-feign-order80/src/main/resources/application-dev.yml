@@ -1,0 +1,43 @@
+server:
+  port: 80
+
+logging:
+  level:
+    com.orion.cloud.order.hystrix.feign.service.HystrixFeignOrderService: debug
+
+eureka:
+  instance:
+    instance-id: hystrixfeignorder80
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+
+#参考官方配置 https://docs.spring.io/spring-cloud-openfeign/docs/2.2.5.RELEASE/reference/html/
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 1000
+        readTimeout: 5000
+  hystrix:
+    enabled: true
+
+#在feign和hystrix共存时，hystrix可以配置自身降级时间，默认1s
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000 # 设置hystrix的超时时间为6000ms
+      circuitBreaker:
+        #在当20秒的时间内，最近10次调用请求，请求错误率超过60%，则触发熔断10秒，期间快速失败。
+        requestVolumeThreshold: 10
+        errorThresholdPercentage: 20
+        sleepWindowInMilliseconds: 10000
+      metrics:
+          rollingStats:
+            timeInMilliseconds: 60000
