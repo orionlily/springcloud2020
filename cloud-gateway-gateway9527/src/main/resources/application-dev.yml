@@ -16,11 +16,23 @@ spring:
   cloud:
     gateway:
       enabled: true
+      discovery:
+        locator:
+          enabled: true
       routes:
         - id: payment #路由的ID，没有固定规则但要求唯一，建议配合服务名
-          uri: http://127.0.0.1 #匹配后提供服务的路由地址
+          uri: lb://CLOUD-HYSTRIX-PAYMENT-SERVICE #匹配后提供服务的路由地址
           predicates: #多种内置断言，https://docs.spring.io/spring-cloud-gateway/docs/2.2.5.RELEASE/reference/html/#the-path-route-predicate-factory
-            - Path=/hystrix/feignorder/payment/** #断言,路径相匹配的进行路由
+            - Path=/hystrix/payment/get/** #断言,路径相匹配的进行路由
+          filters: #redis限流
+            - name: RequestRateLimiter
+              args:
+                key-resolver: '#{@uriKeyResolver}'
+                # 令牌桶每秒填充平均速率,即行等价于允许用户每秒处理多少个请求平均数
+                redis-rate-limiter.replenishRate: 10
+                # 令牌桶的容量，允许在一秒钟内完成的最大请求数
+                redis-rate-limiter.burstCapacity: 20
+                redis-rate-limiter.requestedTokens: 1 # 每次请求消耗1个
         - id: timeout
           uri: http://127.0.0.1
           predicates:
@@ -31,4 +43,20 @@ spring:
           predicates:
             - Path=/hystrix/feignorder/payment/create
             - Method=POST
-
+  redis:
+    #Redis数据库索引(默认为0)
+    database: 0
+    #连接超时时间（毫秒） springboot2.0 中该参数的类型为Duration，这里在配置的时候需要指明单位
+    timeout: 20s
+    port: 6379
+    host: localhost
+    lettuce:
+      pool:
+        #连接池最大连接数（使用负值表示没有限制）
+        max-active: 300
+        #连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1s
+        #连接池中的最大空闲连接
+        max-idle: 100
+        #连接池中的最小空闲连接
+        min-idle: 20

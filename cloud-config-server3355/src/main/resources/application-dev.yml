@@ -1,0 +1,22 @@
+server:
+  port: 3355
+
+eureka:
+  instance:
+    instance-id: configserver3355
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+
+spring:
+  cloud:
+    config:
+      enabled: true
+      server:
+        git:
+          uri: https://github.com/orionlily/SpringConfigRepo
+          search-paths: /hoxton2020
+      label: master
