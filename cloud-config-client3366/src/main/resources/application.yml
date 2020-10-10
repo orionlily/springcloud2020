@@ -1,5 +1,3 @@
 spring:
-  profiles:
-    active: dev
   application:
-    name: config-server
+    name: config-client
