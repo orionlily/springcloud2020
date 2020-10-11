@@ -1,0 +1,28 @@
+server:
+  port: 8801
+spring:
+  rabbitmq:
+    host: localhost
+    username: guest
+    password: guest
+  cloud:
+    stream:
+      bindings:
+        # 自定义：说明customOutput 和customInput 绑定到了 kylin_custom
+        firstOut:
+          destination: orion_first #交换机
+          content-type: application/json
+        secondOut:
+          destination: orion_second
+          content-type: application/json
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      #defaultZone: http://127.0.0.1:7001/eureka
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+  instance:
+    instance-id: streamprovider8801
+    prefer-ip-address: true

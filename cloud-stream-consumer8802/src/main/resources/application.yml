@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: stream-consumer
+
+  profiles:
+    active: dev

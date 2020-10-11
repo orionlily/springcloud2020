@@ -22,6 +22,9 @@
         <module>cloud-config-server3355</module>
         <module>cloud-config-client3366</module>
         <module>cloud-config-client-copy3377</module>
+        <module>cloud-stream-provider8801</module>
+        <module>cloud-stream-consumer8802</module>
+        <module>cloud-stream-consumer-copy-group8803</module>
     </modules>
     <packaging>pom</packaging>
 
