@@ -25,6 +25,9 @@
         <module>cloud-stream-provider8801</module>
         <module>cloud-stream-consumer8802</module>
         <module>cloud-stream-consumer-copy-group8803</module>
+        <module>cloud-alibaba-provider-payment9001</module>
+        <module>cloud-alibaba-provider-payment9002</module>
+        <module>cloud-alibaba-consumer-order83</module>
     </modules>
     <packaging>pom</packaging>
 

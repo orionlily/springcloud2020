@@ -1,0 +1,16 @@
+server:
+  port: 83
+
+spring:
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+
+  application:
+    name: cloud-alibaba-feign-order
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
