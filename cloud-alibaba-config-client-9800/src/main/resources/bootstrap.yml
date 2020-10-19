@@ -1,0 +1,24 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+spring:
+  application:
+    name: cloud-alibaba-config-client9800
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        server-addr: localhost:8848
+        file-extension: yml
+        #dev
+        #group: config9800dev
+        #namespace: bf2bf233-7ba7-47e0-a24d-9b5fa25ba776
+
+        #uat
+        group: config9800uat
+        namespace: f8ca30cd-9caa-4074-a734-611b25b09a70

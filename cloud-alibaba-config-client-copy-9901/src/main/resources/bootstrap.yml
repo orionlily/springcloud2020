@@ -1,0 +1,22 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+spring:
+  application:
+    name: cloud-alibaba-config-client9900cluster
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        server-addr: localhost:8848
+        group: config9901dev
+        namespace: configClientCluster
+        file-extension: yml
+        shared-configs[0]:
+          data-id: share-client-config.yml
+          group: shareGroup
+          refresh: true
