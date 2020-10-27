@@ -36,7 +36,7 @@ public class ServiceController {
     }
 
     @GetMapping("/hotkey")
-    @SentinelResource(value = "/hotkey",blockHandler = "bhhotkey")
+    @SentinelResource(value = "hotkey",blockHandler = "bhhotkey")
     public String hotkey(String a,String b){
         log.info(Thread.currentThread().getName()+ "--hotkey--"+a+"---"+b);
         return Thread.currentThread().getName()+ "--hotkey--"+a+"---"+b;
