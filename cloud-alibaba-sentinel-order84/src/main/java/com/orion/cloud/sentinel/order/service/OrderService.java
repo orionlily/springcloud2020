@@ -6,7 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient("alibaba-sentinel-payment")
+@FeignClient(value = "alibaba-sentinel-payment",fallback = OrderServiceFallback.class)
 public interface OrderService {
 
     @GetMapping("/paymentSQL/{id}")
