@@ -32,6 +32,9 @@
         <module>cloud-alibaba-config-client-9900</module>
         <module>cloud-alibaba-config-client-copy-9901</module>
         <module>cloud-alibaba-sentinel-service8401</module>
+        <module>cloud-alibaba-sentinel-payment9003</module>
+        <module>cloud-alibaba-sentinel-payment9004</module>
+        <module>cloud-alibaba-sentinel-order84</module>
         <module>cloud-alibaba-seata-order2001</module>
     </modules>
     <packaging>pom</packaging>
