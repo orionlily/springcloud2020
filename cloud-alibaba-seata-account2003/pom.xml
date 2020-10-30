@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cloud-alibaba-seata-order2001</artifactId>
+    <artifactId>cloud-alibaba-seata-account2003</artifactId>
 
     <dependencies>
         <dependency>
