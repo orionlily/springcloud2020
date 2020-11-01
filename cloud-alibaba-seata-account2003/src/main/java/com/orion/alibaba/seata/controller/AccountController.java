@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/account")
@@ -28,6 +29,11 @@ public class AccountController {
 
     @PostMapping("/decrease")
     public CommonResult decrease(Long userId, BigDecimal money){
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         accountService.decrease(userId, money);
         return new CommonResult(200,"扣减库存成功！");
     }

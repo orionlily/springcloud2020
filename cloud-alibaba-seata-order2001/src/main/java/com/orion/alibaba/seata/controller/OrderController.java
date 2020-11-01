@@ -1,5 +1,6 @@
 package com.orion.alibaba.seata.controller;
 
+import com.orion.alibaba.seata.entity.Order;
 import com.orion.alibaba.seata.service.OrderService;
 import com.orion.cloud.entities.CommonResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,5 +22,11 @@ public class OrderController {
     @GetMapping("/test")
     public CommonResult test(){
         return new CommonResult<>(200,"test order");
+    }
+
+    @GetMapping("/create")
+    public CommonResult create(Order order){
+        orderService.create(order);
+        return new CommonResult(200,"订单创建成功");
     }
 }
