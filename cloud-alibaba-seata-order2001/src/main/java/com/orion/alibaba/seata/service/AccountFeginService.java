@@ -11,7 +11,7 @@ import java.math.BigDecimal;
  * @author Administrator
  * @date 2020/11/1
  */
-@FeignClient("cloud-seata-account")
+@FeignClient(value = "cloud-seata-account",fallback = AccountFeignFallbackImpl.class)
 public interface AccountFeginService {
 
     @PostMapping("/account/decrease")

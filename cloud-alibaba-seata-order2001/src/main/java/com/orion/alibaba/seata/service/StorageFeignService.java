@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Administrator
  * @date 2020/11/1
  */
-@FeignClient("cloud-seata-storage")
+@FeignClient(value = "cloud-seata-storage",fallback = StorageFeignFallbackImpl.class)
 public interface StorageFeignService {
 
     @PostMapping("/storage/decrease")
